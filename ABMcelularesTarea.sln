@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABMcelularesTarea", "Window
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{58F1E5BC-DD2D-4743-9D11-58644BE924EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{E67B14C8-7E97-4B4A-AB4F-FDC4CE44ED29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaNegocios", "CapaNegocios\CapaNegocios.csproj", "{3BCA9D9C-6F8B-410B-9890-70D0DF54D89C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{58F1E5BC-DD2D-4743-9D11-58644BE924EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58F1E5BC-DD2D-4743-9D11-58644BE924EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58F1E5BC-DD2D-4743-9D11-58644BE924EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E67B14C8-7E97-4B4A-AB4F-FDC4CE44ED29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E67B14C8-7E97-4B4A-AB4F-FDC4CE44ED29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E67B14C8-7E97-4B4A-AB4F-FDC4CE44ED29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E67B14C8-7E97-4B4A-AB4F-FDC4CE44ED29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BCA9D9C-6F8B-410B-9890-70D0DF54D89C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BCA9D9C-6F8B-410B-9890-70D0DF54D89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BCA9D9C-6F8B-410B-9890-70D0DF54D89C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BCA9D9C-6F8B-410B-9890-70D0DF54D89C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -129,7 +129,7 @@
             this.txtAlto.Name = "txtAlto";
             this.txtAlto.Size = new System.Drawing.Size(100, 20);
             this.txtAlto.TabIndex = 8;
-            this.txtAlto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.altoTxt_KeyPress);
+            this.txtAlto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.atributosTxt_KeyPress);
             // 
             // txtAncho
             // 
@@ -138,16 +138,16 @@
             this.txtAncho.Name = "txtAncho";
             this.txtAncho.Size = new System.Drawing.Size(100, 20);
             this.txtAncho.TabIndex = 9;
-            this.txtAncho.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.altoTxt_KeyPress);
+            this.txtAncho.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.atributosTxt_KeyPress);
             // 
             // txtCodigo
             // 
             this.txtCodigo.Location = new System.Drawing.Point(70, 45);
-            this.txtCodigo.MaxLength = 3;
+            this.txtCodigo.MaxLength = 4;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(100, 20);
             this.txtCodigo.TabIndex = 10;
-            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.altoTxt_KeyPress);
+            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codTxt_KeyPress);
             // 
             // txtNumero
             // 
@@ -156,7 +156,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(100, 20);
             this.txtNumero.TabIndex = 11;
-            this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.altoTxt_KeyPress);
+            this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.atributosTxt_KeyPress);
             // 
             // dgvCelulares
             // 

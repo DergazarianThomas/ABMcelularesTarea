@@ -20,11 +20,14 @@ namespace Entidades
         #region Constructores
         public Celular() 
         { }
-        public Celular(decimal Alto, decimal Ancho, int Num)
+        public Celular(int Codigo, decimal Alto, decimal Ancho, int Num, string Modelo, bool Usado, DateTime Recibido)
         {
             this.alto = Alto;
             this.ancho = Ancho;
             this.numero = Num;
+            this.modelo = Modelo;
+            this.usado = Usado;
+            this.recibido = Recibido;
         }
         #endregion
         #region Metodos
