@@ -35,9 +35,11 @@ namespace WindowsFormsProductos1
 
         Celular NuevoCel;
         Celular CelExistente;
-        NegCelulares ObjNegCelular = new NegCelulares();
+        public Celular objEntCel = new Celular();
+        public NegCelulares objNegCelular = new NegCelulares();
         bool nuevo = true;
         int fila;
+        private object txtAltura;
 
         public FormProductos()
         {
@@ -46,29 +48,29 @@ namespace WindowsFormsProductos1
             LlenarDGV();
 
             #region codigo antiguo
-           // InitializeComponent();
+            // InitializeComponent();
 
-           // dtCelulares.Columns.Add("Codigo");
-           // dtCelulares.Columns.Add("Alto");
-           // dtCelulares.Columns.Add("Ancho");
-           // dtCelulares.Columns.Add("Numero");
-           // dtCelulares.Columns.Add("Modelo");
-           // dtCelulares.Columns.Add("Usado");
-           // dtCelulares.Columns.Add("Recibido");
-            
-           // // Carga de datos al dgv
+            // dtCelulares.Columns.Add("Codigo");
+            // dtCelulares.Columns.Add("Alto");
+            // dtCelulares.Columns.Add("Ancho");
+            // dtCelulares.Columns.Add("Numero");
+            // dtCelulares.Columns.Add("Modelo");
+            // dtCelulares.Columns.Add("Usado");
+            // dtCelulares.Columns.Add("Recibido");
 
-           // dgvCelulares.DataSource = dtCelulares;
+            // // Carga de datos al dgv
 
-           // // Crea archivo XML en carpeta por defecto si es que no existe
+            // dgvCelulares.DataSource = dtCelulares;
 
-           // var dir = Path.Combine(Environment
-           //.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Celulares");
-           // if (!Directory.Exists(dir))
-           //     Directory.CreateDirectory(dir);
-           // path = Path.Combine(dir, "Celulares.xml");
+            // // Crea archivo XML en carpeta por defecto si es que no existe
 
-           // LeerDatos();
+            // var dir = Path.Combine(Environment
+            //.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Celulares");
+            // if (!Directory.Exists(dir))
+            //     Directory.CreateDirectory(dir);
+            // path = Path.Combine(dir, "Celulares.xml");
+
+            // LeerDatos();
             #endregion
         }
 
@@ -76,10 +78,10 @@ namespace WindowsFormsProductos1
         {
             dgvCelulares.Rows.Clear();
             DataSet ds = new DataSet();
-            ds = ObjNegCelular.listadoCelulares("Todos");
+            ds = objNegCelular.listadoCelulares("Todos");
             if (ds.Tables[0].Rows.Count > 0)
             {
-                foreach(DataRow dr in ds.Tables[0].Rows)
+                foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     dgvCelulares.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4], dr[5].ToString(), dr[6].ToString());
                 }
@@ -147,15 +149,15 @@ namespace WindowsFormsProductos1
 
                 NuevoCel = new Celular(int.Parse(txtCodigo.Text), decimal.Parse(txtAlto.Text), decimal.Parse(txtAncho.Text), int.Parse(txtNumero.Text), txtModelo.Text, rbtUsado.Checked, dtpRecibido.Value);
 
-                nGrabados = ObjNegCelular.abmCelulares("Alta", NuevoCel);
+                nGrabados = objNegCelular.abmCelulares("Alta", NuevoCel);
 
                 if (nGrabados == -1)
                 {
-                    MessageBox.Show( "No se pudo Cargar Celular en el sistema");
+                    MessageBox.Show("No se pudo Cargar Celular en el sistema");
                 }
                 else
                 {
-                    MessageBox.Show( "Se grabó con éxito el Celular.");
+                    MessageBox.Show("Se grabó con éxito el Celular.");
                     LlenarDGV();
                     limpiarPantalla();
                 }
@@ -178,6 +180,49 @@ namespace WindowsFormsProductos1
             //}
             //GuardarDatos();
             #endregion
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            int nResultado = -1;
+            nResultado = objNegCelular.abmCelulares("Modificar", objEntCel); //invoco a la capa de negocio
+            if (nResultado != -1)
+            {
+                MessageBox.Show("Aviso", "El celular fue Modificado con éxito");
+                limpiarPantalla();
+                LlenarDGV();
+
+                txtCodigo.Enabled = true;
+
+            }
+            else
+                MessageBox.Show("Error", "Se produjo un error al intentar modificar el celular");
+        }
+
+        private void dgvTurnos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            CelExistente = new Celular(Convert.ToInt32(dgvCelulares.CurrentRow.Cells[0].Value), Convert.ToDecimal(dgvCelulares.CurrentRow.Cells[1].Value), Convert.ToDecimal(dgvCelulares.CurrentRow.Cells[2].Value), Convert.ToInt32(dgvCelulares.CurrentRow.Cells[3].Value), Convert.ToString(dgvCelulares.CurrentRow.Cells[4].Value) ,Convert.ToBoolean(dgvCelulares.CurrentRow.Cells[5].Value), Convert.ToDateTime(dgvCelulares.CurrentRow.Cells[6].Value));
+
+            DataSet ds = new DataSet();
+            objEntCel.Codigo = Convert.ToInt32(dgvCelulares.CurrentRow.Cells[0].Value);
+            ds = objNegCelular.listadoCelulares(objEntCel.Codigo.ToString());
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                Ds_a_controles(ds);
+
+            }
+        }
+        private void Ds_a_controles(DataSet ds)
+        {
+            txtCodigo.Text = ds.Tables[0].Rows[0]["Codigo"].ToString();
+            txtAlto.Text = ds.Tables[0].Rows[0]["Altura"].ToString();
+            txtAncho.Text = ds.Tables[0].Rows[0]["Ancho"].ToString();
+            txtModelo.Text = ds.Tables[0].Rows[0]["Modelo"].ToString();
+            txtNumero.Text = ds.Tables[0].Rows[0]["Numero"].ToString();
+            dtpRecibido.Value = (DateTime)ds.Tables[0].Rows[0]["Recibido"];
+            txtCodigo.Enabled = false;
         }
 
         private void atributosTxt_KeyPress(object sender, KeyPressEventArgs e)
@@ -287,6 +332,8 @@ namespace WindowsFormsProductos1
             #endregion
             return bandera;
         }
+
+        
         // Guarda los datos en el XML
         //private void GuardarDatos()
         //{

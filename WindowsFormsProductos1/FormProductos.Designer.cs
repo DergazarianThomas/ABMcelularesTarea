@@ -46,6 +46,7 @@
             this.epvError = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnBorrar = new System.Windows.Forms.Button();
             this.dtpRecibido = new System.Windows.Forms.DateTimePicker();
+            this.btnModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCelulares)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epvError)).BeginInit();
             this.SuspendLayout();
@@ -183,7 +184,7 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(143, 376);
+            this.btnBorrar.Location = new System.Drawing.Point(125, 376);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 17;
@@ -198,11 +199,22 @@
             this.dtpRecibido.Size = new System.Drawing.Size(214, 20);
             this.dtpRecibido.TabIndex = 18;
             // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(232, 376);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.TabIndex = 19;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // FormProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 450);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dtpRecibido);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.rbtUsado);
@@ -247,5 +259,6 @@
         private System.Windows.Forms.ErrorProvider epvError;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.DateTimePicker dtpRecibido;
+        private System.Windows.Forms.Button btnModificar;
     }
 }

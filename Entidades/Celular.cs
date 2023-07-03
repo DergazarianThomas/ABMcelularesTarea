@@ -9,7 +9,7 @@ namespace Entidades
     public class Celular
     {
         #region Atributos
-        private decimal codigo;
+        private int codigo;
         private decimal alto;
         private decimal ancho;
         private int numero;
@@ -22,6 +22,7 @@ namespace Entidades
         { }
         public Celular(int Codigo, decimal Alto, decimal Ancho, int Num, string Modelo, bool Usado, DateTime Recibido)
         {
+            this.codigo = Codigo;
             this.alto = Alto;
             this.ancho = Ancho;
             this.numero = Num;
@@ -37,13 +38,13 @@ namespace Entidades
         }
         #endregion
 
-        public int Codigo { get; set; }
-        public decimal Alto { get; set; }
-        public decimal Ancho { get; set; }
-        public int Numero { get; set; }
-        public string Modelo { get; set; }
-        public bool Usado { get; set; }
-        public DateTime Recibido { get; set; }
+        public int Codigo { get { return codigo; } set { codigo = value; } }
+        public decimal Alto { get { return alto; } set { alto = value; } }
+        public decimal Ancho { get { return ancho; } set { ancho = value; } }
+        public int Numero { get { return numero; } set { numero = value; } }
+        public string Modelo { get { return modelo; } set { modelo= value; } }
+        public bool Usado { get { return usado; } set { usado = value; } }
+        public DateTime Recibido { get { return recibido; } set { recibido = value; } }
 
     }
 }

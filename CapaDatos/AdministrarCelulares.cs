@@ -17,11 +17,16 @@ namespace CapaDatos
             int resultado = -1;  // para controlar que se realize la operacion con exito
             string orden = string.Empty; // para guardad consulta sql
             if (accion == "Alta")
-                orden = "insert into Celulares values (" + objCelular.Codigo + ",'" + objCelular.Alto + "'," + objCelular.Ancho + "'," + objCelular.Numero +  "'," + objCelular.Modelo + "'," + objCelular.Usado + "'," + objCelular.Recibido + ");";
+            {
+                orden = $"insert into Celulares (Codigo, Alto, Ancho, Modelo, Numero, Usado, Recibido) values ('{objCelular.Codigo}', {objCelular.Alto}, '{objCelular.Ancho}', {objCelular.Modelo}, '{objCelular.Numero}' , {objCelular.Usado}, '{objCelular.Recibido}' );";
+            }
+              //  orden = "insert into Celulares values (" + objCelular.Codigo + ",'" + objCelular.Alto + "'," + objCelular.Ancho + "'," + objCelular.Modelo + "'," + objCelular.Numero +  "',"  + objCelular.Usado + "'," + objCelular.Recibido + ");";
 
             if (accion == "Modificar")
-                orden = "update Celulares set Alto='" + objCelular.Alto + "', Ancho=" + objCelular.Ancho + "', Numero=" + objCelular.Numero + "', Modelo=" + objCelular.Modelo + "', Usado=" + objCelular.Usado +"', Recibido=" + objCelular.Recibido + " where codigo = " + objCelular.Codigo + "; ";
+                orden = "update Celulares set Alto='" + objCelular.Alto + "', Ancho='" + objCelular.Ancho + "', Modelo=" + objCelular.Modelo + "', Numero='" + objCelular.Numero +  "', Usado=" + objCelular.Usado +", Recibido='" + objCelular.Recibido + "' where codigo = " + objCelular.Codigo + "; ";
 
+            if (accion == "Borrar")
+                orden = "delete * from Personas where Codigo ='" + objCelular.Codigo + ",'";
 
             // falta la orden de borrar
 
@@ -33,7 +38,7 @@ namespace CapaDatos
             }
             catch (Exception e)
             {
-                throw new Exception("Errror al tratar de guardar,borrar o modificar de Profesionales", e);
+                throw new Exception($"Error de la accion {accion}", e);
             }
             finally
             {
