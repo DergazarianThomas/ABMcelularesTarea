@@ -20,6 +20,11 @@ namespace Entidades
         #region Constructores
         public Celular() 
         { }
+
+        public Celular(int Codigo)
+        {
+            this.codigo = Codigo;
+        }
         public Celular(int Codigo, decimal Alto, decimal Ancho, int Num, string Modelo, bool Usado, DateTime Recibido)
         {
             this.codigo = Codigo;

@@ -24,6 +24,7 @@ namespace WindowsFormsProductos1
         //// Errores
 
         const string ERROR_CODIGO = "Codigo repetido";
+        const string ERROR_CODIGO_CAMPO = "Llene el campo";
         const string ERROR_CAMPOS = "Llene los campos";
         const string ERROR_COMAS = "Solo una ,(coma) por campo";
         const string ERROR_BORRADO = "Celular no seleccionado";
@@ -167,6 +168,14 @@ namespace WindowsFormsProductos1
         // Valida que los txt solo admitan numeros, comas y se pueda borrar.
         private void btnBorrar_Click_1(object sender, EventArgs e)
         {
+            if (!ValidarTabla(this.Controls))
+            {
+                int nGrabados = -1;
+                NuevoCel = new Celular(int.Parse(txtCodigo.Text));
+                nGrabados = objNegCelular.abmCelulares("Borrar", NuevoCel);
+                LlenarDGV();
+            }
+            
             #region antiguo borrar
             //if (dgvCelulares.CurrentRow == null)
             //{
@@ -295,11 +304,11 @@ namespace WindowsFormsProductos1
             dtpRecibido.ResetText();
             rbtUsado.Checked = false;
         }
+
         //Valida los datos
         private bool ValidarTabla(Control.ControlCollection ctrlCollection)
         {
             bool bandera = false;
-            char myChar = ',';
 
             // Validar campos vacios para datagrid
 
@@ -333,7 +342,20 @@ namespace WindowsFormsProductos1
             return bandera;
         }
 
-        
+        private bool ValidarCodigo()
+        {
+            bool bandera = false;
+
+            if (txtCodigoBorrar.Text.Any())
+            {
+                bandera = true;
+
+                MessageBox.Show(this, ERROR_CODIGO, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            };
+            return bandera;
+        }
+
         // Guarda los datos en el XML
         //private void GuardarDatos()
         //{

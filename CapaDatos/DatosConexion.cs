@@ -11,7 +11,7 @@ namespace CapaDatos
     public class DatosConexion
     {
         protected OleDbConnection conexion;
-        protected string cadenaConexion= @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""E:\VS22\Repos\Programacion 2 ABM\ABMcelularesDatabase.accdb""";
+        protected string cadenaConexion= @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""E:\VS22\Prueba\Programacion 2 ABM\ABMcelularesDatabase.accdb""";
 
         public DatosConexion()
         {

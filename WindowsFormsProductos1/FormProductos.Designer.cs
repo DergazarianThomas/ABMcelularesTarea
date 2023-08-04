@@ -47,6 +47,8 @@
             this.btnBorrar = new System.Windows.Forms.Button();
             this.dtpRecibido = new System.Windows.Forms.DateTimePicker();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.txtCodigoBorrar = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCelulares)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epvError)).BeginInit();
             this.SuspendLayout();
@@ -184,7 +186,7 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(125, 376);
+            this.btnBorrar.Location = new System.Drawing.Point(420, 376);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 17;
@@ -201,7 +203,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(232, 376);
+            this.btnModificar.Location = new System.Drawing.Point(117, 376);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 19;
@@ -209,11 +211,31 @@
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // txtCodigoBorrar
+            // 
+            this.txtCodigoBorrar.Location = new System.Drawing.Point(409, 405);
+            this.txtCodigoBorrar.MaxLength = 4;
+            this.txtCodigoBorrar.Name = "txtCodigoBorrar";
+            this.txtCodigoBorrar.Size = new System.Drawing.Size(100, 20);
+            this.txtCodigoBorrar.TabIndex = 20;
+            this.txtCodigoBorrar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codTxt_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(363, 408);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Codigo";
+            // 
             // FormProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtCodigoBorrar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dtpRecibido);
             this.Controls.Add(this.btnBorrar);
@@ -260,5 +282,7 @@
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.DateTimePicker dtpRecibido;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCodigoBorrar;
     }
 }

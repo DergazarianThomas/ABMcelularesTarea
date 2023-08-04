@@ -26,9 +26,8 @@ namespace CapaDatos
                 orden = "update Celulares set Alto='" + objCelular.Alto + "', Ancho='" + objCelular.Ancho + "', Modelo=" + objCelular.Modelo + "', Numero='" + objCelular.Numero +  "', Usado=" + objCelular.Usado +", Recibido='" + objCelular.Recibido + "' where codigo = " + objCelular.Codigo + "; ";
 
             if (accion == "Borrar")
-                orden = "delete * from Personas where Codigo ='" + objCelular.Codigo + ",'";
+                orden = "delete * from Celulares where Codigo =" + objCelular.Codigo + ";";
 
-            // falta la orden de borrar
 
             OleDbCommand cmd = new OleDbCommand(orden, conexion);
             try
