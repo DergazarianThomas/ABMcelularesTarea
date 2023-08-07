@@ -146,34 +146,48 @@ namespace WindowsFormsProductos1
 
                 //guardardatos();
                 #endregion
-                int nGrabados = -1;
 
-                NuevoCel = new Celular(int.Parse(txtCodigo.Text), decimal.Parse(txtAlto.Text), decimal.Parse(txtAncho.Text), int.Parse(txtNumero.Text), txtModelo.Text, rbtUsado.Checked, dtpRecibido.Value);
+                int fila = BuscarCodigo(Convert.ToString(txtCodigo));
 
-                nGrabados = objNegCelular.abmCelulares("Alta", NuevoCel);
-
-                if (nGrabados == -1)
+                if (fila != -1)
                 {
-                    MessageBox.Show("No se pudo Cargar Celular en el sistema");
+                    MessageBox.Show(ERROR_CODIGO);
                 }
                 else
                 {
-                    MessageBox.Show("Se grabó con éxito el Celular.");
-                    LlenarDGV();
-                    limpiarPantalla();
+                    int nGrabados = -1;
+
+                    NuevoCel = new Celular(int.Parse(txtCodigo.Text), decimal.Parse(txtAlto.Text), decimal.Parse(txtAncho.Text), int.Parse(txtNumero.Text), txtModelo.Text, rbtUsado.Checked, dtpRecibido.Value);
+
+                    nGrabados = objNegCelular.abmCelulares("Alta", NuevoCel);
+
+                    if (nGrabados == -1)
+                    {
+                        MessageBox.Show("No se pudo Cargar Celular en el sistema");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Se grabó con éxito el Celular.");
+                        LlenarDGV();
+                        limpiarPantalla();
+                    }
                 }
             }
-
         }
         // Valida que los txt solo admitan numeros, comas y se pueda borrar.
         private void btnBorrar_Click_1(object sender, EventArgs e)
         {
-            if (!ValidarTabla(this.Controls))
+            if (ValidarCodigoBorrar() == false)
             {
-                int nGrabados = -1;
-                NuevoCel = new Celular(int.Parse(txtCodigo.Text));
-                nGrabados = objNegCelular.abmCelulares("Borrar", NuevoCel);
-                LlenarDGV();
+                DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar el celular de codigo " + txtCodigoBorrar.Text + "?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes)
+                {
+                    int nGrabados = -1;
+                    NuevoCel = new Celular(int.Parse(txtCodigoBorrar.Text));
+                    nGrabados = objNegCelular.abmCelulares("Borrar", NuevoCel);
+                    LlenarDGV();
+                }
+                
             }
             
             #region antiguo borrar
@@ -194,10 +208,13 @@ namespace WindowsFormsProductos1
         private void btnModificar_Click(object sender, EventArgs e)
         {
             int nResultado = -1;
-            nResultado = objNegCelular.abmCelulares("Modificar", objEntCel); //invoco a la capa de negocio
+            NuevoCel = new Celular(int.Parse(txtCodigo.Text), decimal.Parse(txtAlto.Text), decimal.Parse(txtAncho.Text), int.Parse(txtNumero.Text), txtModelo.Text, rbtUsado.Checked, dtpRecibido.Value);
+
+            nResultado = objNegCelular.abmCelulares("Modificar", NuevoCel); //invoco a la capa de negocio
+
             if (nResultado != -1)
             {
-                MessageBox.Show("Aviso", "El celular fue Modificado con éxito");
+                MessageBox.Show("El celular fue Modificado con éxito", "Aviso");
                 limpiarPantalla();
                 LlenarDGV();
 
@@ -205,7 +222,7 @@ namespace WindowsFormsProductos1
 
             }
             else
-                MessageBox.Show("Error", "Se produjo un error al intentar modificar el celular");
+                MessageBox.Show("Se produjo un error al intentar modificar el celular", "Error");
         }
 
         private void dgvTurnos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -342,26 +359,49 @@ namespace WindowsFormsProductos1
             return bandera;
         }
 
-        private bool ValidarCodigo()
+        private bool ValidarCodigoBorrar()
         {
             bool bandera = false;
 
-            if (txtCodigoBorrar.Text.Any())
+            if (!txtCodigoBorrar.Text.Any())
             {
                 bandera = true;
 
-                MessageBox.Show(this, ERROR_CODIGO, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, ERROR_CODIGO_CAMPO, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             };
             return bandera;
         }
+        
+        public void ValidarCodigo()
+        {
+            
+        }
 
-        // Guarda los datos en el XML
-        //private void GuardarDatos()
-        //{
-        //    dtCelulares.WriteXml(path);
-        //}
-        // Borra la fila seleccionada
+        public int BuscarCodigo(string code)
+        {
+            int fila = -1;
+
+            DataSet ds = new DataSet();
+            ds = objNegCelular.listadoCelulares("Todos");
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+
+                if (ds.Tables[0].Rows[i]["Codigo"].ToString() == code)
+                {
+                    fila = i;
+                    break;
+                }
+            }
+            return fila;
+        }
+            // Guarda los datos en el XML
+            //private void GuardarDatos()
+            //{
+            //    dtCelulares.WriteXml(path);
+            //}
+            // Borra la fila seleccionada
 
 
 

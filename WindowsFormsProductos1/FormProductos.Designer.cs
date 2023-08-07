@@ -218,6 +218,7 @@
             this.txtCodigoBorrar.Name = "txtCodigoBorrar";
             this.txtCodigoBorrar.Size = new System.Drawing.Size(100, 20);
             this.txtCodigoBorrar.TabIndex = 20;
+            this.txtCodigoBorrar.Text = "0";
             this.txtCodigoBorrar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codTxt_KeyPress);
             // 
             // label1

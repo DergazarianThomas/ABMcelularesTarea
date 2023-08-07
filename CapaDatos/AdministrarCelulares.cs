@@ -18,12 +18,15 @@ namespace CapaDatos
             string orden = string.Empty; // para guardad consulta sql
             if (accion == "Alta")
             {
-                orden = $"insert into Celulares (Codigo, Alto, Ancho, Modelo, Numero, Usado, Recibido) values ('{objCelular.Codigo}', {objCelular.Alto}, '{objCelular.Ancho}', {objCelular.Modelo}, '{objCelular.Numero}' , {objCelular.Usado}, '{objCelular.Recibido}' );";
+                orden = $"insert into Celulares (Codigo, Alto, Ancho, Modelo, Numero, Usado, Recibido) values ({objCelular.Codigo}, {objCelular.Alto}, {objCelular.Ancho},' {objCelular.Modelo}', {objCelular.Numero} , {objCelular.Usado}, '{objCelular.Recibido}' );";
             }
               //  orden = "insert into Celulares values (" + objCelular.Codigo + ",'" + objCelular.Alto + "'," + objCelular.Ancho + "'," + objCelular.Modelo + "'," + objCelular.Numero +  "',"  + objCelular.Usado + "'," + objCelular.Recibido + ");";
 
             if (accion == "Modificar")
-                orden = "update Celulares set Alto='" + objCelular.Alto + "', Ancho='" + objCelular.Ancho + "', Modelo=" + objCelular.Modelo + "', Numero='" + objCelular.Numero +  "', Usado=" + objCelular.Usado +", Recibido='" + objCelular.Recibido + "' where codigo = " + objCelular.Codigo + "; ";
+               // orden = "update Celulares set Alto=" + objCelular.Alto + ", Ancho=" + objCelular.Ancho + ", Modelo='" + objCelular.Modelo + "', Numero=" + objCelular.Numero +  ", Usado=" + objCelular.Usado +", Recibido='" + objCelular.Recibido + "' where codigo = " + objCelular.Codigo + "; ";
+
+              orden = $"update Celulares set Alto={objCelular.Alto}, Ancho={objCelular.Ancho}, Modelo='{objCelular.Modelo}', Numero={objCelular.Numero}, Usado={objCelular.Usado}, Recibido='{objCelular.Recibido}' WHERE codigo Like '%{objCelular.Codigo}%';";
+
 
             if (accion == "Borrar")
                 orden = "delete * from Celulares where Codigo =" + objCelular.Codigo + ";";
